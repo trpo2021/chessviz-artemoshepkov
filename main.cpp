@@ -23,6 +23,9 @@ int main()
 
     cout << TransX(x1);
     while (1) {
+      for (int i = 0; i < 5; ++i) {
+
+      }
         cin >> x1 >> y1 >> d >> x2 >> y2;
         cin >> x3 >> y3 >> d >> x4 >> y4;
         Motion(board, x1, x2, y1, y2);

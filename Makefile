@@ -1,13 +1,17 @@
-all: chess
+CFLAGS = -Wall -Wextra -Werror
+CC = g++
 
 chess: main.o lib.o
-	g++ main.o lib.o -o chess
+	$(CC) $(CFLAGS) main.o lib.o -o chess
 
 main.o: main.cpp
-	g++ -c main.cpp
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 lib.o: lib.cpp
-	g++ -c lib.cpp
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+libchess.a: lib.o
+	ar rcs $@ $^
 
 clean:
-	rm -rf *.o chess
+	rm -rf *.o *.exe
