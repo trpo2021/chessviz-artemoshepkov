@@ -5,35 +5,25 @@ using namespace std;
 int TransX(char x) {
     switch (x) {
     case 'a':
-        x = 1;
-        break;
+        return 1;
     case 'b':
-        x = 2;
-        break;
+        return 2;
     case 'c':
-        x = 3;
-        break;
+        return 3;
     case 'd':
-        x = 4;
-        break;
+        return 4;
     case 'e':
-        x = 5;
-        break;
+        return 5;
     case 'f':
-        x = 6;
-        break;
+        return 6;
     case 'g':
-        x = 7;
-        break;
+        return 7;
     case 'h':
-        x = 8;
-        break;
+        return 8;
     default:
-        x = 0;
+        return 0;
     }
-    return x;
 }
-
 int TransY(int y) {
     switch (y) {
     case 1:
@@ -66,15 +56,12 @@ int TransY(int y) {
     return y;
 }
 
-void dash()
-{
+void dash() {
     for (int i = 0; i < 20; ++i)
         cout << "_";
     cout << endl;
 }
-
-void out_board(char board[9][9])
-{
+void out_board(char board[9][9]) {
     dash();
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j)
@@ -84,8 +71,7 @@ void out_board(char board[9][9])
     dash();
 }
 
-void Motion(char board[9][9], char x1, char x2, int y1, int y2)
-{
+void Motion(char board[9][9], char x1, char x2, int y1, int y2) {
     board[TransY(y2)][TransX(x2)] = board[TransY(y1)][TransX(x1)];
     board[TransY(y1)][TransX(x1)] = ' ';
 }
@@ -97,7 +83,6 @@ int CheckRangeX(char x1, char x2, char x3, char x4) {
     else
         return 0;
 }
-
 int CheckRangeY(int y1, int y2, int y3, int y4) {
     if (TransY(y1) != -1 && TransY(y2) != -1 && TransY(y3) != -1 && TransY(y4) != -1) {
         return 1;
