@@ -2,6 +2,11 @@
 #include <iostream>
 using namespace std;
 
+struct coord {
+  char type, x1, x2, sign;
+  int y1, y2;
+};
+
 int TransX(char x) {
     switch (x) {
     case 'a':
@@ -71,22 +76,23 @@ void out_board(char board[9][9]) {
     dash();
 }
 
-void Motion(char board[9][9], char x1, char x2, int y1, int y2) {
-    board[TransY(y2)][TransX(x2)] = board[TransY(y1)][TransX(x1)];
-    board[TransY(y1)][TransX(x1)] = ' ';
+void Motion(char board[9][9], coord str) {
+    board[TransY(str.y2)][TransX(str.x2)] = board[TransY(str.y1)][TransX(str.x1)];
+    board[TransY(str.y1)][TransX(str.x1)] = ' ';
 }
 
-int CheckRangeX(char x1, char x2, char x3, char x4) {
-    if (TransX(x1) != 0 && TransX(x2) != 0 && TransX(x3) != 0 && TransX(x4) != 0) {
+int CheckRangeX(coord first, coord second) {
+    if (TransX(first.x1) != 0 && TransX(first.x2) != 0 && TransX(second.x1) != 0 && TransX(second.x2) != 0)
         return 1;
-    }
-    else
-        return 0;
+    return 0;
 }
-int CheckRangeY(int y1, int y2, int y3, int y4) {
-    if (TransY(y1) != -1 && TransY(y2) != -1 && TransY(y3) != -1 && TransY(y4) != -1) {
+int CheckRangeY(coord first, coord second) {
+    if (TransY(first.y1) != -1 && TransY(first.y2) != -1 && TransY(second.y1) != -1 && TransY(second.y2) != -1)
         return 1;
-    }
-    else
-        return 0;
+    return 0;
+}
+int CheckType (char board[9][9], coord first, coord second) {
+  if (first.type == board[TransY(first.y1)][TransX(first.x1)] && second.type == board[TransY(second.y1)][TransX(second.x1)])
+    return 1;
+  return 0;
 }
