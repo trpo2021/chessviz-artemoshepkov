@@ -1,5 +1,6 @@
 #include <libchessviz/lib.h>
 #include <iostream>
+#include <string>
 using namespace std;
 
 struct coord {
@@ -7,18 +8,7 @@ struct coord {
   int y1, y2;
 };
 
-// void CheckType (coord *first) {
-//   if (first.type == 'a' || first.type == 'b' || first.type == 'c' || first.type == 'd' || first.type == 'e' || first.type == 'f' || first.type == 'g' || first.type == 'h') {
-//     first.y2 = first.x2;
-//     first.x2 = first.sign;
-//     first.sign = first.y1;
-//     first.y1 = first.x1;
-//     first.x1 = first.type;
-//   }
-// }
-
-int main()
-{
+int main() {
   char board[9][9] = { {'8', 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
                        {'7', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
                        {'6', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -31,6 +21,7 @@ int main()
   out_board(board);
 
   coord first, second;
+
   while (1)
   {
       cin >> first.type;
@@ -43,7 +34,7 @@ int main()
         cin >> first.x1 >> first.y1 >> first.sign >> first.x2 >> first.y2;
 
       cin >> second.type;
-      if (second.type != 'r' && second.type != 'k' && second.type != 'b' && second.type != 'q' && second.type != 'n') {
+      if (second.type != 'r' && second.type != 'k' && second.type != 'q' && second.type != 'n') {
         second.x1 = second.type;
         second.type = 'p';
         cin  >> second.y1 >> second.sign >> second.x2 >> second.y2;
@@ -51,16 +42,21 @@ int main()
       else
         cin  >> second.x1 >> second.y1 >> second.sign >> second.x2 >> second.y2;
 
+
       if (CheckType(board, first, second)) {
         if (CheckRangeX(first, second) && CheckRangeY(first, second)) {
               Motion(board, first);
               Motion(board, second);
               out_board(board);
         }
-        else
+        else {
           cout << "Error range" << endl;
+          //break;
+        }
       }
-      else
+      else {
         cout << "Error type" << endl;
+        //break;
+      }
   }
 }
