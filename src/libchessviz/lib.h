@@ -1,4 +1,5 @@
 #pragma once
+struct coord;
 int TransX(char x);
 int TransY(int y);
 void dash();
