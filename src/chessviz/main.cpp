@@ -23,7 +23,6 @@ int main()
     out_board(board);
 
     coord first, second;
-
     while (1) {
         cin >> first.type;
         if (first.type != 'R' && first.type != 'K' && first.type != 'B'
