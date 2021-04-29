@@ -51,11 +51,11 @@ int main()
                 out_board(board);
             } else {
                 cout << "Error range" << endl;
-                // break;
+                break;
             }
         } else {
             cout << "Error type" << endl;
-            // break;
+            break;
         }
     }
 }
