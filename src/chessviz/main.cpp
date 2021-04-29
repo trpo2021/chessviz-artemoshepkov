@@ -10,7 +10,8 @@ struct coord {
 
 int main()
 {
-    char board[9][9]
+    const int N = 9;
+    char board[N][N]
             = {{'8', 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
                {'7', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
                {'6', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},

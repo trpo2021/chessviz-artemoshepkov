@@ -1,7 +1,7 @@
 #include <iostream>
 #include <libchessviz/lib.h>
 using namespace std;
-
+const int N = 9;
 struct coord {
     char type, x1, x2, sign;
     int y1, y2;
@@ -69,18 +69,18 @@ void dash()
         cout << "_";
     cout << endl;
 }
-void out_board(char board[9][9])
+void out_board(char board[N][N])
 {
     dash();
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j)
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j)
             cout << board[i][j] << ' ';
         cout << endl;
     }
     dash();
 }
 
-void Motion(char board[9][9], coord str)
+void Motion(char board[N][N], coord str)
 {
     board[TransY(str.y2)][TransX(str.x2)]
             = board[TransY(str.y1)][TransX(str.x1)];
@@ -101,7 +101,7 @@ int CheckRangeY(coord first, coord second)
         return 1;
     return 0;
 }
-int CheckType(char board[9][9], coord first, coord second)
+int CheckType(char board[N][N], coord first, coord second)
 {
     if (first.type == board[TransY(first.y1)][TransX(first.x1)]
         && second.type == board[TransY(second.y1)][TransX(second.x1)])
