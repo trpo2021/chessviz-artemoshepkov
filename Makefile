@@ -1,7 +1,7 @@
 APP_NAME = chessviz
 LIB_NAME = libchessviz
 TEST_NAME = chess-test
-CC = g++
+CXX = g++
 SRC_EXT = cpp
 
 CPPFLAGS = -Wall -Wextra -Werror -I src -I thirdparty -MP -MMD
@@ -12,8 +12,8 @@ OBJ_DIR = obj
 SRC_DIR = src
 TEST_DIR = test
 
-APP_PATH = $(BIN_DIR)/$(APP_NAME)
-TEST_PATH = $(BIN_DIR)/$(TEST_NAME)
+APP_PATH = $(BIN_DIR)/$(APP_NAME).exe
+TEST_PATH = $(BIN_DIR)/$(TEST_NAME).exe
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
 
 APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name main.cpp)
@@ -34,22 +34,22 @@ test: $(TEST_PATH)
 -include $(DEPS)
 
 $(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	$(CC) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 
 $(TEST_PATH): $(TEST_OBJECTS) $(LIB_PATH)
-	$(CC) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
+	$(CXX) $(CPPFLAGS) $^ -o $@ $(LDFLAGS) $(LDLIBS)
 
 $(LIB_PATH): $(LIB_OBJECTS)
 	ar rcs $@ $^
 
 $(OBJ_DIR)/$(SRC_DIR)/$(APP_NAME)/%.o: $(SRC_DIR)/$(APP_NAME)/%.cpp
-	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
 
 $(OBJ_DIR)/$(TEST_DIR)/%.o: $(TEST_DIR)/%.cpp
-	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
 
 $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/%.o: $(SRC_DIR)/$(LIB_NAME)/%.cpp
-	$(CC) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
+	$(CXX) -c $(CPPFLAGS) $< -o $@ $(LDLIBS)
 
 .PHONY: clean
 clean:
